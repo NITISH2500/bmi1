@@ -1,24 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import  Add from './components/Add'
+import Read from './components/Read'
+import{
+  BrowserRouter,
+  Route,
+  Routes,
+  
+} from "react-router-dom"
 
 function App() {
+  const [id,setId]=useState("");
+  const change=(id)=>{
+  setId(id);
+  console.log(id);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <BrowserRouter>
+    
+    <Routes>
+      <Route exact path="/" element={<Read id={change}/>}/>
+      <Route exact path="/ad" element={<Add toogle="f"/>}/>
+      <Route exact path="/update" element={<Add id={id} toogle="t"/>}/>
+    </Routes>
+    </BrowserRouter>
+   
+    </>
   );
 }
 
